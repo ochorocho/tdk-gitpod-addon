@@ -1,0 +1,37 @@
+{
+  "name": "TYPO3 TDK to GitPod",
+  "manifest_version": 2,
+  "description": "TYPO3 TDK integration",
+  "short_name": "TYPO3 TDK integration",
+  "version": "1.6.8",
+  "default_locale": "en",
+  "homepage_url": "https://github.com/ochorocho/tdk-gitpod-addon",
+  "icons": {
+    "48": "icons/typo3-orange.svg",
+    "96": "icons/typo3-orange.svg"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "scripts": ["polyfill.js", "background.js"]
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["polyfill.js", "tdk.js"],
+      "css": ["tdk.css"]
+    }
+  ],
+  "browser_action": {
+    "default_icon": "icons/typo3-dark.svg",
+    "theme_icons": [{
+      "light": "icons/typo3-light.svg",
+      "dark": "icons/typo3-dark.svg",
+      "size": 48
+    }],
+    "default_title": "TYPO3 TDK",
+	"default_popup": "popup.html"
+  }
+}

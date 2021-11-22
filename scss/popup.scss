@@ -1,0 +1,22 @@
+@import 'general';
+
+body {
+  @include mode;
+
+  padding: spacer('medium');
+  font-family: $font-family;
+}
+
+.popup-link {
+  @include button;
+}
+
+label {
+  display: block;
+  padding: spacer('small') 0;
+  border-bottom: 1px solid $t3-orange;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}

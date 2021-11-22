@@ -1,0 +1,86 @@
+@import 'variables';
+
+@mixin checkbox {
+  display: none;
+
+  & + label {
+    background-color: $t3-orange;
+    float: right;
+    height: 20px;
+    position: relative;
+    width: 20px;
+  }
+
+  &:checked + label {
+    &::before {
+      background-color: $white;
+      content: '';
+      display: block;
+      float: right;
+      height: 12px;
+      margin: 4px;
+      position: absolute;
+      width: 12px;
+    }
+  }
+
+}
+
+@mixin button {
+  border: 1px solid $t3-orange;
+  background: $t3-orange;
+  font-family: $font-family;
+  color: $white;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px;
+  text-align: center;
+}
+
+@mixin mode($border: false, $link: false) {
+  background: $light-menu;
+  color: $light-text;
+
+  @if $border {
+    border: 1px solid $light-border;
+  }
+
+  @if $link {
+    &:hover {
+      background: $light-menu-hover;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background: $dark-menu;
+    color: $dark-text;
+
+    @if $border {
+      border: 1px solid $dark-border;
+    }
+
+    @if $link {
+      cursor: pointer;
+
+      &:hover {
+        background: $dark-menu-hover;
+      }
+    }
+  }
+}
+
+@mixin spinner($color: $spinner-color, $background: $spinner-background) {
+  animation: spin 1s ease-in-out infinite;
+  border: 3px solid $background;
+  border-radius: 50%;
+  border-top-color: $color;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
