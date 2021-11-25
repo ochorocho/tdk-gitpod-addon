@@ -16,7 +16,7 @@ class TdkButton extends LitElement {
     return html`
       <style-sheet/>
 
-      <button class="popup-link" data-i18n="openButton">
+      <button class="gitpod" data-i18n="openButton">
         Open in GitPod
       </button>
     `

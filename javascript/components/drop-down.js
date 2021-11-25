@@ -18,11 +18,14 @@ class DropDown extends LitElement {
     return html`
       <style-sheet/>
 
-      <label>${this.label}
-        ${this.items.length
-          ? html`${this.select()}`
-          : html`<span class="loading"></span>`}
-      </label>
+      <div class="container">
+        <label class="label">${this.label}</label>
+        <div class="value">
+          ${this.items.length
+            ? html`${this.select()}`
+            : html`<span class="loading"></span>`}
+        </div>
+      </div>
     `
   }
 

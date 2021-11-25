@@ -3,7 +3,7 @@
 body {
   @include mode;
 
-  padding: spacer('medium');
+  padding: spacer('small');
   font-family: $font-family;
 }
 
@@ -11,18 +11,11 @@ a {
   color: $t3-orange;
 }
 
-.popup-link {
+.gitpod {
   @include button;
-}
 
-label {
   display: block;
-  border-bottom: 1px solid $t3-orange;
-  padding: spacer('small') 0;
-
-  &:last-child {
-    border-bottom: 0;
-  }
+  margin: spacer('large') auto auto auto;
 }
 
 .not-available {
@@ -32,4 +25,21 @@ label {
 
 .loading {
   @include spinner($t3-orange, $size: 7px)
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 100px 100px;
+  grid-template-rows: auto;
+  column-gap: 10px;
+  padding: spacer('xs') 0;
+  border-bottom: 1px solid $t3-orange;
+}
+
+.label, .value {
+  grid-auto-columns: auto;
+}
+
+.value select {
+  width: 100%;
 }

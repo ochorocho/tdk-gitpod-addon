@@ -7,7 +7,6 @@ module.exports = {
   mode: 'development',
   entry: {
     tdk: './javascript/tdk.js',
-    background: './javascript/background.js',
     popup: './javascript/popup.js'
   },
   output: {

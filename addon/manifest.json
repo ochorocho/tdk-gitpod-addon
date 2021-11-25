@@ -11,19 +11,10 @@
     "96": "icons/typo3-orange.svg"
   },
   "permissions": [
+	"*://review.typo3.org/*",
     "activeTab"
   ],
-  "background": {
-    "scripts": ["polyfill.js", "background.js"]
-  },
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "content_scripts": [
-    {
-      "matches": ["*://*/*"],
-      "js": ["polyfill.js", "tdk.js"],
-      "css": ["tdk.css"]
-    }
-  ],
   "browser_action": {
     "default_icon": "icons/typo3-dark.svg",
     "theme_icons": [{

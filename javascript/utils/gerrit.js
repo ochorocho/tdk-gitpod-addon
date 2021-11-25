@@ -22,14 +22,34 @@ class Gerrit {
       })
   }
 
-  revision(patchId) {
+  revision(patchId, currentRevision) {
     return fetch(`https://review.typo3.org/changes/${patchId}/?o=ALL_REVISIONS`)
       .then(response => response.text())
       .then(data => this.makeValid(data))
       .then(json => {
-        const revision = Object.keys(json.revisions).reverse()[0]
-        return json.revisions[revision] || {}
+        let revision = ''
+
+        if (currentRevision === null) {
+          revision = Object.keys(json.revisions).reverse()[0]
+        } else {
+          revision = Object.keys(json.revisions)[currentRevision - 1]
+        }
+
+        json.revisions[revision].selected = true
+
+        return json.revisions || {}
       })
+  }
+
+  username() {
+    return fetch('https://review.typo3.org/accounts/self/?pp=0')
+      .then(response => {
+        if (response.status === 403) {
+          return '{}'
+        }
+        return response.text()
+      })
+      .then(data => this.makeValid(data))
   }
 
   makeValid(json) {
@@ -37,9 +57,8 @@ class Gerrit {
   }
 
   parse(url) {
-    const urlObject = new URL(url)
     const pattern = /Packages\/TYPO3\.CMS\/\+\/([0-9]+)(|$)(\/|$)([0-9]*|$)(\.\.|$)([0-9]*|$)/g
-    const matches = pattern.exec(urlObject.pathname)
+    const matches = pattern.exec(url)
 
     if (!matches) {
       return null

@@ -1,31 +1,5 @@
 @import 'variables';
 
-@mixin checkbox {
-  display: none;
-
-  & + label {
-    background-color: $t3-orange;
-    float: right;
-    height: 20px;
-    position: relative;
-    width: 20px;
-  }
-
-  &:checked + label {
-    &::before {
-      background-color: $white;
-      content: '';
-      display: block;
-      float: right;
-      height: 12px;
-      margin: 4px;
-      position: absolute;
-      width: 12px;
-    }
-  }
-
-}
-
 @mixin button {
   border: 1px solid $t3-orange;
   background: $t3-orange;
