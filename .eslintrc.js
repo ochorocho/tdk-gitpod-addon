@@ -16,7 +16,8 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
-    "no-extra-parens": 0,
-    "object-curly-spacing": 0,
+    'no-extra-parens': 0,
+    'object-curly-spacing': 0,
+    'space-before-function-paren': 0
   }
 }

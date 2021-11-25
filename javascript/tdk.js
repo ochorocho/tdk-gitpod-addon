@@ -1,35 +1,35 @@
 import '../scss/tdk.scss'
 
-const gettingStoredSettings = browser.storage.local.get()
+// const gettingStoredSettings = browser.storage.local.get()
+//
+// /**
+//  * Get addon settings
+//  */
+// gettingStoredSettings.then(function (data) {
+//   // const settingsSearch = Object.assign({method: 'account/search'}, data)
+//   // const port = window.location.port !== '' ? ':' + window.location.port : ''
+//   // const text = window.location.host + port + window.location.pathname
+//   // settings = data
+//
+//   // chrome.runtime.sendMessage({
+//   //     contentScriptQuery: 'accountSearch',
+//   //     text: text,
+//   //     settings: settingsSearch
+//   // }, data => selectLogin(data))
+// })
 
-/**
- * Get addon settings
- */
-gettingStoredSettings.then(function (data) {
-  // const settingsSearch = Object.assign({method: 'account/search'}, data)
-  // const port = window.location.port !== '' ? ':' + window.location.port : ''
-  // const text = window.location.host + port + window.location.pathname
-  // settings = data
-
-  // chrome.runtime.sendMessage({
-  //     contentScriptQuery: 'accountSearch',
-  //     text: text,
-  //     settings: settingsSearch
-  // }, data => selectLogin(data))
-})
-
-browser.runtime.onMessage.addListener(request => {
-  if (request.command === 'fillOutForm') {
-    // usernameField.value = `${request.login}`
-
-    // spinner()
-    // const settingsPassword = Object.assign({ method: 'account/viewPass', id: request.id }, settings)
-    // chrome.runtime.sendMessage({ contentScriptQuery: 'getPassword', settings: settingsPassword }, data => {
-    //     passwordField.value = data.result.result.password
-    //     document.getElementById('syspass-spinner').remove()
-    // })
-  }
-})
+// chrome.runtime.onMessage.addListener(request => {
+//   if (request.command === 'fillOutForm') {
+//     // usernameField.value = `${request.login}`
+//
+//     // spinner()
+//     // const settingsPassword = Object.assign({ method: 'account/viewPass', id: request.id }, settings)
+//     // chrome.runtime.sendMessage({ contentScriptQuery: 'getPassword', settings: settingsPassword }, data => {
+//     //     passwordField.value = data.result.result.password
+//     //     document.getElementById('syspass-spinner').remove()
+//     // })
+//   }
+// })
 
 /**
  * Loading indicator

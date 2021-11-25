@@ -16,6 +16,7 @@ indent_style = space
 
 [{*.cjs,*.js}]
 indent_style = space
+quote_type = single
 
 [{*.htm,*.html,*.ng,*.sht,*.shtm,*.shtml}]
 indent_style = space

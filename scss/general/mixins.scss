@@ -69,14 +69,14 @@
   }
 }
 
-@mixin spinner($color: $spinner-color, $background: $spinner-background) {
+@mixin spinner($color: $spinner-color, $background: $spinner-background, $size: 10px) {
   animation: spin 1s ease-in-out infinite;
   border: 3px solid $background;
   border-radius: 50%;
   border-top-color: $color;
   display: inline-block;
-  height: 100%;
-  width: 100%;
+  height: $size;
+  width: $size;
 
   @keyframes spin {
     to {

@@ -7,16 +7,29 @@ body {
   font-family: $font-family;
 }
 
+a {
+  color: $t3-orange;
+}
+
 .popup-link {
   @include button;
 }
 
 label {
   display: block;
-  padding: spacer('small') 0;
   border-bottom: 1px solid $t3-orange;
+  padding: spacer('small') 0;
 
   &:last-child {
     border-bottom: 0;
   }
+}
+
+.not-available {
+  text-align: center;
+  display: block;
+}
+
+.loading {
+  @include spinner($t3-orange, $size: 7px)
 }
