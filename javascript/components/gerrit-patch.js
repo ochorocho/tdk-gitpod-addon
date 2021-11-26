@@ -40,7 +40,6 @@ class GerritPatch extends LitElement {
     const gerrit = new Gerrit()
     gerrit.revision(this.patch, this.revision).then(data => {
       this.revisions = data
-      console.log(Array.from(data), data)
     })
   }
 
