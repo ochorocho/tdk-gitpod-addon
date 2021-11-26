@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node_modules/.bin/webpack --mode=production && rm -Rf web-ext-artifacts/* && node_modules/.bin/web-ext build --source-dir=dist",
     "watch": "node_modules/.bin/webpack --mode=development --watch",
-    "dev": "node_modules/.bin/web-ext run --browser-console --start-url review.typo3.org --start-url review.typo3.org/c/Packages/TYPO3.CMS/+/69360 --start-url review.typo3.org/c/Packages/TYPO3.CMS/+/69360/1..2 --start-url www.google.de --source-dir=dist --verbose & node_modules/.bin/webpack --watch",
+    "dev": "cp -Rf addon dist;  node_modules/.bin/webpack --watch & node_modules/.bin/web-ext run --browser-console --start-url https://review.typo3.org/c/Packages/TYPO3.CMS/+/72275/ --start-url https://review.typo3.org/c/Packages/TYPO3.CMS/+/72275/13 --start-url review.typo3.org --start-url www.google.de --source-dir=dist --verbose",
     "lint": "node_modules/.bin/web-ext lint --source-dir=dist",
     "sign:development": "rm -f dist/.web-extension-id; set -o allexport; source .env; set +o allexport; node_modules/.bin/web-ext sign --channel unlist --api-key=$MOZ_API_KEY --api-secret=$MOZ_API_SECRET --source-dir=dist/; unset MOZ_API_KEY MOZ_API_SECRET",
     "sign:production": "set -o allexport; source .env; set +o allexport; node_modules/.bin/web-ext sign --channel unlist --api-key=$MOZ_API_KEY --api-secret=$MOZ_API_SECRET --source-dir=dist/; unset MOZ_API_KEY MOZ_API_SECRET"
