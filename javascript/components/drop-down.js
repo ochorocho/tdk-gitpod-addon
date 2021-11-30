@@ -4,7 +4,8 @@ class DropDown extends LitElement {
   static get properties() {
     return {
       label: String,
-      items: Array
+      items: Array,
+      env: String
     }
   }
 
@@ -12,6 +13,7 @@ class DropDown extends LitElement {
     super()
     this.label = ''
     this.items = []
+    this.env = ''
   }
 
   render() {
@@ -29,21 +31,30 @@ class DropDown extends LitElement {
     `
   }
 
-  firstUpdated(changedProperties) {
-    const objectProp = 'TDK_' + this.label.toUpperCase().replace(' ', '_')
-    console.log('Update called ' + objectProp)
-    if (this.renderRoot.querySelector('select')) {
-      this.form[objectProp] = this.renderRoot.querySelector('select').value
-    }
-  }
-
   select() {
     return html`
-      <select>
+      <select @change="${e => this.updateSelectValue(e.target)}">
         ${this.items.map(item => html`
           <option value="${item.value}">${item.name}</option>`)}
       </select>
     `
+  }
+
+  firstUpdated(_changedProperties) {
+    super.firstUpdated(_changedProperties)
+    this.env = 'TDK_' + this.label.toUpperCase().replace(' ', '_')
+  }
+
+  updated(args) {
+    const select = this.renderRoot.querySelector('select')
+
+    if (select) {
+      this.form[`${this.env}`] = select.value
+    }
+  }
+
+  updateSelectValue(item) {
+    this.form[`${this.env}`] = item.value
   }
 }
 

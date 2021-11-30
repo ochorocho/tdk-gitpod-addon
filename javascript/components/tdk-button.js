@@ -18,7 +18,7 @@ class TdkButton extends LitElement {
 
   render() {
     return html`
-      <button id="open-git-pod" type="submit" class="gitpod" data-i18n="openButton">
+      <button id="open-git-pod" type="submit" class="gitpod">
         Open in GitPod
       </button>
     `

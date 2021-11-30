@@ -40,18 +40,22 @@ class GerritPatch extends LitElement {
     const gerrit = new Gerrit()
     gerrit.revision(this.patch, this.revision).then(data => {
       this.revisions = data
-      this.form.TDK_PATCH_REVISION = this.revision || this.revisions[0]._number
+      this.updateRevision(this.revisions[this.revision || 0].ref)
     })
   }
 
   // @todo: Use existing dropdown component?!
   select() {
     return html`
-      <select>
+      <select @change="${e => this.updateRevision(e.target.value)}">
         ${this.revisions.map(item => html`
-          <option ?selected=${item.selected === true} value="${item._number}">${item._number}</option>`)}
+          <option ?selected=${item.selected === true} value="${item.ref}">${item._number}</option>`)}
       </select>
     `
+  }
+
+  updateRevision(value) {
+    this.form.TDK_PATCH_REF = value
   }
 }
 
