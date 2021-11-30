@@ -12,11 +12,13 @@ class TdkButton extends LitElement {
     this.url = ''
   }
 
+  createRenderRoot() {
+    return this
+  }
+
   render() {
     return html`
-      <style-sheet/>
-
-      <button class="gitpod" data-i18n="openButton">
+      <button id="open-git-pod" type="submit" class="gitpod" data-i18n="openButton">
         Open in GitPod
       </button>
     `

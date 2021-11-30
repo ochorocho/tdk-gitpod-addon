@@ -1,10 +1,14 @@
 @import 'general';
 
+html { box-sizing: border-box; }
+
 body {
   @include mode;
 
+  box-sizing: border-box;
   padding: spacer('small');
   font-family: $font-family;
+  font-size: $font-size;
 }
 
 a {
@@ -29,7 +33,7 @@ a {
 
 .container {
   display: grid;
-  grid-template-columns: 100px 100px;
+  grid-template-columns: 100px 140px;
   grid-template-rows: auto;
   column-gap: 10px;
   padding: spacer('xs') 0;
@@ -40,6 +44,24 @@ a {
   grid-auto-columns: auto;
 }
 
-.value select {
-  width: 100%;
+.value {
+  box-sizing: border-box;
+
+  select, input {
+    @include mode;
+
+    font-family: $font-family;
+    font-size: $font-size;
+    border: 0;
+    width: 100%;
+  }
+
+  input {
+    padding: 0;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
 }

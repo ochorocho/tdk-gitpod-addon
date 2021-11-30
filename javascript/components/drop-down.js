@@ -29,11 +29,19 @@ class DropDown extends LitElement {
     `
   }
 
+  firstUpdated(changedProperties) {
+    const objectProp = 'TDK_' + this.label.toUpperCase().replace(' ', '_')
+    console.log('Update called ' + objectProp)
+    if (this.renderRoot.querySelector('select')) {
+      this.form[objectProp] = this.renderRoot.querySelector('select').value
+    }
+  }
+
   select() {
     return html`
       <select>
         ${this.items.map(item => html`
-            <option value="${item.value}">${item.name}</option>`)}
+          <option value="${item.value}">${item.name}</option>`)}
       </select>
     `
   }

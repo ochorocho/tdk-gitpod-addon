@@ -13,9 +13,7 @@ class Gerrit {
           }
         })
 
-        refs.sort(function (a, b) {
-          return b - a
-        })
+        refs.sort((a, b) => b.value - a.value)
         refs.unshift({name: 'master', value: 'master'})
 
         return refs
@@ -27,17 +25,17 @@ class Gerrit {
       .then(response => response.text())
       .then(data => this.makeValid(data))
       .then(json => {
-        let revision = ''
+        const revisions = []
 
-        if (currentRevision === null) {
-          revision = Object.keys(json.revisions).reverse()[0]
-        } else {
-          revision = Object.keys(json.revisions)[currentRevision - 1]
-        }
+        Object.keys(json.revisions).forEach(item => {
+          const number = json.revisions[item]._number
+          if (parseInt(currentRevision) === parseInt(number)) {
+            json.revisions[item].selected = true
+          }
+          revisions[number] = json.revisions[item]
+        })
 
-        json.revisions[revision].selected = true
-
-        return json.revisions || {}
+        return revisions.reverse() || {}
       })
   }
 

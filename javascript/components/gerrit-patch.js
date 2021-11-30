@@ -6,7 +6,7 @@ class GerritPatch extends LitElement {
     return {
       patch: String,
       revision: String,
-      revisions: Object
+      revisions: Array
     }
   }
 
@@ -14,7 +14,7 @@ class GerritPatch extends LitElement {
     super()
     this.patch = ''
     this.revision = ''
-    this.revisions = {}
+    this.revisions = []
   }
 
   render() {
@@ -28,7 +28,7 @@ class GerritPatch extends LitElement {
       <div class="container">
         <div class="label">Revision</div>
         <div class="value">
-          ${!this.revisions.length
+          ${this.revisions
             ? html`${this.select()}`
             : html`<span class="loading"></span>`}
         </div>
@@ -40,6 +40,7 @@ class GerritPatch extends LitElement {
     const gerrit = new Gerrit()
     gerrit.revision(this.patch, this.revision).then(data => {
       this.revisions = data
+      this.form.TDK_PATCH_REVISION = this.revision || this.revisions[0]._number
     })
   }
 
@@ -47,8 +48,8 @@ class GerritPatch extends LitElement {
   select() {
     return html`
       <select>
-        ${Object.entries(this.revisions).map(item => html`
-          <option ?selected=${item[1].selected === true} value="${item[1]._number}">${item[1]._number}</option>`)}
+        ${this.revisions.map(item => html`
+          <option ?selected=${item.selected === true} value="${item._number}">${item._number}</option>`)}
       </select>
     `
   }
