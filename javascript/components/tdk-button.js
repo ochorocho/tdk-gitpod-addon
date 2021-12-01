@@ -1,4 +1,4 @@
-import {LitElement, html} from 'lit-element'
+import {LitElement, html} from 'lit'
 
 class TdkButton extends LitElement {
   static get properties() {
@@ -12,16 +12,18 @@ class TdkButton extends LitElement {
     this.url = ''
   }
 
-  createRenderRoot() {
-    return this
-  }
-
   render() {
     return html`
-      <button id="open-git-pod" type="submit" class="gitpod">
+      <style-sheet/>
+
+      <button @click="${this.submitForm}" id="open-git-pod" type="submit" class="gitpod">
         Open in GitPod
       </button>
     `
+  }
+
+  submitForm() {
+    this.dispatchEvent(new CustomEvent('open-in-gitpod', {bubbles: true, composed: true}))
   }
 }
 

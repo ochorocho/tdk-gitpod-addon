@@ -1,4 +1,4 @@
-import {LitElement, html} from 'lit-element'
+import {LitElement, html} from 'lit'
 import {Gerrit} from '../utils/gerrit'
 
 class PopupContent extends LitElement {
@@ -7,7 +7,7 @@ class PopupContent extends LitElement {
       url: String,
       branches: Array,
       php: Array,
-      form: { type: Object, reflect: true }
+      form: {type: Object, reflect: true}
     }
   }
 
@@ -27,16 +27,19 @@ class PopupContent extends LitElement {
     this.gerrit.branches().then(data => {
       this.branches = data
     })
+
+    this.addEventListener('open-in-gitpod', (e) => {
+      this.handleSubmit()
+    })
   }
 
   render() {
-    console.log('PARENT FORM RENDER', this.form)
     this.patch = this.gerrit.parse(this.url)
     if (this.patch) {
       return html`
-        <style-sheet></style-sheet>
+        <style-sheet/>
 
-        <form @submit="${(e) => this.handleSubmit(e)}" method="post" id="GitPodForm">
+        <form method="post" id="GitPodForm">
           <tdk-username .form="${this.form}" label="Username"></tdk-username>
           <gerrit-patch .form="${this.form}" .patch="${this.patch.id}"
                         .revision="${this.patch.revision}"></gerrit-patch>
@@ -51,9 +54,12 @@ class PopupContent extends LitElement {
     }
   }
 
-  handleSubmit(e) {
-    e.preventDefault()
+  handleSubmit() {
     this.form.TDK_PATCH_ID = this.patch.id
+    const enves = Object.keys(this.form).map((key) => [key, this.form[key]].join('=')).join(',')
+    const gitPod = 'https://gitpod.io/#' + enves + '/https://github.com/ochorocho/tdk/tree/feature/gitpod'
+    window.open(gitPod)
+    console.log(gitPod)
     console.log(this.form)
   }
 }

@@ -2,16 +2,17 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const SassLintPlugin = require('sass-lint-webpack')
+const WebpackShellPluginNext = require('webpack-shell-plugin-next')
 
 module.exports = {
   mode: 'development',
   entry: {
-    tdk: './javascript/tdk.js',
     popup: './javascript/popup.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
+    clean: true
   },
   watchOptions: {
     ignored: ['dist', 'node_modules']
@@ -19,9 +20,21 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
-        {from: 'addon', to: './'},
+        {from: 'addon', to: '../dist/'},
         {from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js', to: './polyfill.js'}
       ]
+    }),
+    new WebpackShellPluginNext({
+      onBuildStart: {
+        scripts: ['echo "Webpack Start"'],
+        blocking: true,
+        parallel: false
+      },
+      onBuildEnd: {
+        scripts: ['node ./generate-icons.js'],
+        blocking: false,
+        parallel: true
+      }
     }),
     new SassLintPlugin()
   ],

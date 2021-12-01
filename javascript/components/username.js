@@ -1,4 +1,4 @@
-import {LitElement, html} from 'lit-element'
+import {LitElement, html} from 'lit'
 import {Gerrit} from '../utils/gerrit'
 
 class Username extends LitElement {

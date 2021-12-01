@@ -1,5 +1,5 @@
 // Dark Mode
-$dark: #333333;
+$dark: #333;
 $dark-menu: #4a4a4f;
 $dark-menu-hover: #5c5c61;
 $dark-text: #f9f9fa;
@@ -17,12 +17,13 @@ $spinner-background: #dedede;
 $spinner-color: #999;
 
 // Common
-$white: #ffffff;
-$spacers: ("xs": .3rem, "small": .5rem, "medium": 1rem, "large": 2rem);
+$white: #fff;
+$spacers: ('xs': .3rem, 'small': .5rem, 'medium': 1rem, 'large': 2rem);
+
 
 // TYPO3
 $font-family:  Share, Arial;
-$font-size:  1rem;
+$font-sizes:  ('xs': .5rem, 'small': .8rem, 'medium': 1rem, 'large': 2rem);
 
 $t3-orange: #eb7c00;
 $t3-orange-light: #f7a831;

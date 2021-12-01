@@ -1,3 +1,7 @@
 @function spacer($name) {
   @return map-get($spacers, $name);
 }
+
+@function font($name) {
+  @return map-get($font-sizes, $name);
+}

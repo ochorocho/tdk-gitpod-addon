@@ -6,25 +6,27 @@ body {
   @include mode;
 
   box-sizing: border-box;
-  padding: spacer('small');
   font-family: $font-family;
-  font-size: $font-size;
+  font-size: font('medium');
+  min-width: 280px;
+  padding: spacer('small');
 }
 
 a {
   color: $t3-orange;
+  text-decoration: none;
 }
 
 .gitpod {
   @include button;
 
   display: block;
-  margin: spacer('large') auto auto auto;
+  margin: spacer('large') auto auto;
 }
 
 .not-available {
-  text-align: center;
   display: block;
+  text-align: center;
 }
 
 .loading {
@@ -32,27 +34,29 @@ a {
 }
 
 .container {
+  border-bottom: 1px solid $t3-orange;
+  column-gap: 10px;
   display: grid;
   grid-template-columns: 100px 140px;
   grid-template-rows: auto;
-  column-gap: 10px;
   padding: spacer('xs') 0;
-  border-bottom: 1px solid $t3-orange;
 }
 
-.label, .value {
+.label,
+.value {
   grid-auto-columns: auto;
 }
 
 .value {
   box-sizing: border-box;
 
-  select, input {
+  select,
+  input {
     @include mode;
 
-    font-family: $font-family;
-    font-size: $font-size;
     border: 0;
+    font-family: $font-family;
+    font-size: font('medium');
     width: 100%;
   }
 
@@ -64,4 +68,9 @@ a {
       outline: none;
     }
   }
+}
+
+.alert-warning {
+  color: $t3-light-grey;
+  font-size: font('small');
 }

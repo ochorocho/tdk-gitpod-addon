@@ -7,8 +7,8 @@
   "default_locale": "en",
   "homepage_url": "https://github.com/ochorocho/tdk-gitpod-addon",
   "icons": {
-    "48": "icons/typo3-orange.svg",
-    "96": "icons/typo3-orange.svg"
+    "48": "icons/typo3-light-48.png",
+    "96": "icons/typo3-light-96.png"
   },
   "permissions": [
 	"*://review.typo3.org/*",
@@ -16,10 +16,10 @@
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "browser_action": {
-    "default_icon": "icons/typo3-dark.svg",
+    "default_icon": "icons/typo3-light-48.png",
     "theme_icons": [{
-      "light": "icons/typo3-light.svg",
-      "dark": "icons/typo3-dark.svg",
+      "light": "icons/typo3-light-48.png",
+      "dark": "icons/typo3-dark-48.png",
       "size": 48
     }],
     "default_title": "TYPO3 TDK",

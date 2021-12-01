@@ -1,11 +1,11 @@
 @import 'variables';
 
 @mixin button {
-  border: 1px solid $t3-orange;
   background: $t3-orange;
-  font-family: $font-family;
+  border: 1px solid $t3-orange;
   color: $white;
   cursor: pointer;
+  font-family: $font-family;
   font-size: 18px;
   padding: 5px;
   text-align: center;

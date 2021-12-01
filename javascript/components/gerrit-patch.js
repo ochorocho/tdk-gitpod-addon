@@ -1,4 +1,4 @@
-import {LitElement, html} from 'lit-element'
+import {LitElement, html} from 'lit'
 import {Gerrit} from '../utils/gerrit'
 
 class GerritPatch extends LitElement {
@@ -19,7 +19,7 @@ class GerritPatch extends LitElement {
 
   render() {
     return html`
-      <style-sheet></style-sheet>
+      <style-sheet/>
 
       <div class="container">
         <div class="label">Patch</div>
