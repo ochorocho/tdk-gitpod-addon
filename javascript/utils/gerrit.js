@@ -1,6 +1,10 @@
 class Gerrit {
+  constructor() {
+    this.baseUrl = 'https://review.typo3.org'
+  }
+
   branches() {
-    return fetch('https://review.typo3.org/projects/Packages%2FTYPO3.CMS/branches/')
+    return fetch(this.baseUrl + '/projects/Packages%2FTYPO3.CMS/branches/')
       .then(response => response.text())
       .then(data => this.makeValid(data))
       .then(json => {
@@ -14,14 +18,14 @@ class Gerrit {
         })
 
         refs.sort((a, b) => b.value - a.value)
-        refs.unshift({name: 'master', value: 'master'})
+        refs.unshift({name: 'main', value: 'main'})
 
         return refs
       })
   }
 
   revision(patchId, currentRevision) {
-    return fetch(`https://review.typo3.org/changes/${patchId}/?o=ALL_REVISIONS`)
+    return fetch(`${this.baseUrl}/changes/${patchId}/?o=ALL_REVISIONS`)
       .then(response => response.text())
       .then(data => this.makeValid(data))
       .then(json => {
@@ -40,7 +44,7 @@ class Gerrit {
   }
 
   username() {
-    return fetch('https://review.typo3.org/accounts/self/?pp=0')
+    return fetch(`${this.baseUrl}/accounts/self/?pp=0`)
       .then(response => {
         if (response.status === 403) {
           return '{}'

@@ -11,6 +11,7 @@ class Username extends LitElement {
   constructor() {
     super()
     this.username = ''
+    this.gerrit = new Gerrit()
     this.getUsername()
   }
 
@@ -22,8 +23,8 @@ class Username extends LitElement {
         <div class="value">${this.username.length
           ? html`${this.username}`
           : html`
-            <div class="alert-warning">Can't detect username, please <a
-              href="https://review.typo3.org/login/%2Fc%2FPackages%2FTYPO3.CMS%2F%2B%2F72275%2F">login</a> (optional)
+            <div class="alert-warning">Can't detect username, please <a target="_blank"
+              href="${this.gerrit.baseUrl}/login/%2Fc%2FPackages%2FTYPO3.CMS%2F%2B%2F72275%2F">login</a> (optional)
             </div>`}
         </div>
       </div>
@@ -31,8 +32,7 @@ class Username extends LitElement {
   }
 
   getUsername() {
-    const gerrit = new Gerrit()
-    gerrit.username().then(data => {
+    this.gerrit.username().then(data => {
       this.username = data.username || ''
       this.form.TDK_USERNAME = this.username.length ? this.username : 'none'
     })

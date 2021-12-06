@@ -25,11 +25,6 @@ module.exports = {
       ]
     }),
     new WebpackShellPluginNext({
-      onBuildStart: {
-        scripts: ['echo "Webpack Start"'],
-        blocking: true,
-        parallel: false
-      },
       onBuildEnd: {
         scripts: ['node ./generate-icons.js'],
         blocking: false,
