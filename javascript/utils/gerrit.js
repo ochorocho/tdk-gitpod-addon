@@ -12,7 +12,7 @@ class Gerrit {
         json.forEach(item => {
           const pattern = /refs\/heads\/([0-9]*\.[0-9]*)/g // eslint-disable-line no-useless-escape
           const matches = pattern.exec(item.ref)
-          if (matches && matches[1] !== '') {
+          if (matches && matches[1] > 10.2) {
             refs.push({name: matches[1], value: matches[1]})
           }
         })
