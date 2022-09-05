@@ -28,11 +28,6 @@ set up a composer based TYPO3 development environment in GitPod.
 * Publish the addon to the different browser markets
 * Integrate GitHub workflow
 
-## Speedrun
-
-Checkout the [speedrun](typo3-gitpod-speedrun.mp4) to see
-how it works.
-
 ## Development
 
 ```bash
