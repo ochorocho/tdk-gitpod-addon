@@ -3,3 +3,5 @@
 /node_modules
 /.idea
 .env
+/.yarn/cache
+/.yarn/install-state.gz

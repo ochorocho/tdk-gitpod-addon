@@ -5,7 +5,7 @@ const SassLintPlugin = require('sass-lint-webpack')
 const WebpackShellPluginNext = require('webpack-shell-plugin-next')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     popup: './javascript/popup.js'
   },
@@ -17,6 +17,7 @@ module.exports = {
   watchOptions: {
     ignored: ['dist', 'node_modules']
   },
+  devtool: 'source-map', // Do not render eval() in bundle
   plugins: [
     new CopyWebpackPlugin({
       patterns: [

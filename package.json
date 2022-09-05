@@ -50,5 +50,6 @@
     "webextension-polyfill": "^0.7.0",
     "webpack-concat-plugin": "3.0.0",
     "webpack-shell-plugin-next": "^2.2.2"
-  }
+  },
+  "packageManager": "yarn@3.2.3"
 }

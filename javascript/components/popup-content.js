@@ -15,7 +15,7 @@ class PopupContent extends LitElement {
     super()
     this.url = ''
     this.branches = []
-    this.php = [{name: '8.0', value: '8.0'}, {name: '8.1', value: '8.1'}, {name: '7.4', value: '7.4'}]
+    this.php = [{name: '8.1', value: '8.1'}, {name: '8.0', value: '8.0'}, {name: '7.4', value: '7.4'}]
     this.gerrit = new Gerrit()
     this.tab = browser.tabs.query({currentWindow: true, active: true})
     this.patch = {}
