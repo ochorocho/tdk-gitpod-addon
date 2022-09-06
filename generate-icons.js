@@ -6,7 +6,7 @@ const glob = require('glob')
 const iconsFolder = path.join(__dirname, 'icons/')
 const iconsTargetFolder = path.join(__dirname, './dist/icons/')
 
-// Create target folder if does not exist
+// Create target folder if it does not exist
 const dir = path.join(iconsTargetFolder)
 if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir, 0o744)
@@ -20,7 +20,7 @@ glob(path.join(iconsFolder, '**/*.svg'), function (er, files) {
 })
 
 // Generate icon sizes
-function renderIcon(file, sizes = [48, 96]) {
+function renderIcon(file, sizes = [48, 96, 128]) {
   const filename = path.parse(path.basename(file))
 
   sizes.forEach((size) => {
