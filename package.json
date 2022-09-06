@@ -1,16 +1,17 @@
 {
   "name": "tdk-gitpod-addon",
-  "version": "1.6.8",
+  "version": "1.0.1",
   "description": "tdk-gitpod-addon",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/.bin/webpack --mode=production && node_modules/.bin/web-ext build --overwrite-dest --source-dir=dist",
+    "build:v2": "node_modules/.bin/webpack --mode=production && mv dist/manifest-v2.json dist/manifest.json && rm dist/manifest-v3.json && node_modules/.bin/web-ext build --overwrite-dest --source-dir=dist --filename=typo3_tdk_gitpod-v2.zip",
+    "build:v3": "node_modules/.bin/webpack --mode=production && mv dist/manifest-v3.json dist/manifest.json && rm dist/manifest-v2.json && node_modules/.bin/web-ext build --overwrite-dest --source-dir=dist --filename=typo3_tdk_gitpod-v3.zip",
     "watch": "node_modules/.bin/webpack --mode=development --watch",
-    "dev": "yarn watch & sleep 5; node_modules/.bin/web-ext run --browser-console --start-url https://review.typo3.org/c/Packages/TYPO3.CMS/+/72275/ --start-url https://review.typo3.org/c/Packages/TYPO3.CMS/+/72275/13 --start-url review.typo3.org --start-url www.google.de --source-dir=dist --verbose",
-    "dev:chrome": "yarn watch & sleep 5; node_modules/.bin/web-ext run -t chromium --browser-console --start-url https://review.typo3.org/c/Packages/TYPO3.CMS/+/72275/ --start-url https://review.typo3.org/c/Packages/TYPO3.CMS/+/72275/13 --start-url review.typo3.org --start-url www.google.de --source-dir=dist --verbose",
+    "dev": "yarn watch & sleep 5; mv dist/manifest-v2.json dist/manifest.json && rm dist/manifest-v3.json; node_modules/.bin/web-ext run --browser-console --start-url https://review.typo3.org/c/Packages/TYPO3.CMS/+/72275/ --start-url https://review.typo3.org/c/Packages/TYPO3.CMS/+/72275/13 --start-url review.typo3.org --start-url www.google.de --source-dir=dist --verbose",
+    "dev:chrome": "yarn watch & sleep 5; mv dist/manifest-v3.json dist/manifest.json && rm dist/manifest-v2.json; node_modules/.bin/web-ext run -t chromium --browser-console --start-url https://review.typo3.org/c/Packages/TYPO3.CMS/+/72275/ --start-url https://review.typo3.org/c/Packages/TYPO3.CMS/+/72275/13 --start-url review.typo3.org --start-url www.google.de --source-dir=dist --verbose",
     "lint": "node_modules/.bin/web-ext lint --source-dir=dist",
-    "sign:development": "rm -f dist/.web-extension-id; set -o allexport; source .env; set +o allexport; node_modules/.bin/web-ext sign --api-key=$MOZ_API_KEY --api-secret=$MOZ_API_SECRET --source-dir=dist/; unset MOZ_API_KEY MOZ_API_SECRET",
-    "sign:production": "set -o allexport; source .env; set +o allexport; node_modules/.bin/web-ext sign --channel unlist --api-key=$MOZ_API_KEY --api-secret=$MOZ_API_SECRET --source-dir=dist/; unset MOZ_API_KEY MOZ_API_SECRET"
+    "sign:development": "rm -f dist/.web-extension-id; node_modules/.bin/web-ext sign --api-key=$WEB_EXT_API_KEY --api-secret=$WEB_EXT_API_SECRET --source-dir=dist/",
+    "sign:production": "node_modules/.bin/web-ext sign --channel unlist --api-key=$WEB_EXT_API_KEY --api-secret=$WEB_EXT_API_SECRET --source-dir=dist/"
   },
   "license": "MPL-2.0",
   "devDependencies": {
@@ -30,6 +31,8 @@
     "autoprefixer": "^10.0.4",
     "css-loader": "^5.0.1",
     "cssnano": "^4.1.10",
+    "dotenv": "^16.0.2",
+    "dotenv-webpack": "^8.0.1",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^4.0.2",
     "extract-loader": "^5.1.0",

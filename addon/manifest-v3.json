@@ -1,9 +1,9 @@
 {
-  "name": "TYPO3 TDK GitPod",
-  "manifest_version": 2,
+  "name": "TYPO3 TDK GitPod Integration",
+  "manifest_version": 3,
   "description": "Run TYPO3 TDK with current patch in GitPod",
-  "short_name": "TYPO3 TDK integration",
-  "version": "1.0.0",
+  "short_name": "TYPO3 TDK GitPod",
+  "version": "1.0.1",
   "default_locale": "en",
   "homepage_url": "https://github.com/ochorocho/tdk-gitpod-addon",
   "icons": {
@@ -14,8 +14,10 @@
 	"*://review.typo3.org/*",
     "activeTab"
   ],
-  "content_security_policy": "script-src 'self'; object-src 'self'",
-  "browser_action": {
+  "extension_pages": {
+	  "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "action": {
     "default_icon": "icons/typo3-orange-48.png",
     "theme_icons": [{
       "light": "icons/typo3-light-48.png",

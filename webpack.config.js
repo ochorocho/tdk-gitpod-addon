@@ -3,6 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const SassLintPlugin = require('sass-lint-webpack')
 const WebpackShellPluginNext = require('webpack-shell-plugin-next')
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: 'production',
@@ -19,6 +20,7 @@ module.exports = {
   },
   devtool: 'source-map', // Do not render eval() in bundle
   plugins: [
+    new Dotenv(),
     new CopyWebpackPlugin({
       patterns: [
         {from: 'addon', to: '../dist/'},
