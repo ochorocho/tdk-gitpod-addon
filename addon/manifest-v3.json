@@ -1,30 +1,37 @@
 {
-  "name": "TYPO3 TDK GitPod Integration",
-  "manifest_version": 3,
-  "description": "Run TYPO3 TDK with current patch in GitPod",
-  "short_name": "TYPO3 TDK GitPod",
-  "version": "1.0.1",
-  "default_locale": "en",
-  "homepage_url": "https://github.com/ochorocho/tdk-gitpod-addon",
-  "icons": {
-    "48": "icons/typo3-orange-48.png",
-    "96": "icons/typo3-orange-96.png"
-  },
-  "permissions": [
-	"*://review.typo3.org/*",
-    "activeTab"
-  ],
-  "extension_pages": {
-	  "extension_pages": "script-src 'self'; object-src 'self'"
-  },
-  "action": {
-    "default_icon": "icons/typo3-orange-48.png",
-    "theme_icons": [{
-      "light": "icons/typo3-light-48.png",
-      "dark": "icons/typo3-dark-48.png",
-      "size": 48
-    }],
-    "default_title": "TYPO3 TDK",
-	"default_popup": "popup.html"
-  }
+	"name": "TYPO3 TDK GitPod Integration",
+	"manifest_version": 3,
+	"description": "Run TYPO3 TDK with current patch in GitPod",
+	"short_name": "TYPO3 TDK GitPod",
+	"version": "1.0.1",
+	"default_locale": "en",
+	"homepage_url": "https://github.com/ochorocho/tdk-gitpod-addon",
+	"icons": {
+		"48": "icons/typo3-orange-48.png",
+		"96": "icons/typo3-orange-96.png"
+	},
+	"permissions": [
+		"activeTab"
+	],
+	"host_permissions": [
+		"https://review.typo3.org/*"
+	],
+	"optional_host_permissions": [
+		"*://*/*"
+	],
+	"content_security_policy": {
+		"extension_pages": "script-src 'self'; object-src 'self'"
+	},
+	"action": {
+		"default_icon": "icons/typo3-orange-48.png",
+		"theme_icons": [
+			{
+				"light": "icons/typo3-light-48.png",
+				"dark": "icons/typo3-dark-48.png",
+				"size": 48
+			}
+		],
+		"default_title": "TYPO3 TDK",
+		"default_popup": "popup.html"
+	}
 }
