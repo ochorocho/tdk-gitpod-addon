@@ -2,7 +2,7 @@
 	"name": "TYPO3 TDK GitPod Integration",
 	"manifest_version": 3,
 	"description": "Run TYPO3 TDK with current patch in GitPod",
-	"short_name": "TYPO3 TDK GitPod",
+	"short_name": "TYPO3 GitPod",
 	"version": "1.0.2",
 	"default_locale": "en",
 	"homepage_url": "https://github.com/ochorocho/tdk-gitpod-addon",

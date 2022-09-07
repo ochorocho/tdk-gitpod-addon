@@ -1,0 +1,31 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 4 * * *"
+jobs:
+  testsuite:
+    name: Tests
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        php: [ '8.1' ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.4.1
+
+      - name: Install packages
+        run: yarn install
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Build v2/v3 manifest addon
+        run: |
+            yarn build:v2
+            yarn build:v3
