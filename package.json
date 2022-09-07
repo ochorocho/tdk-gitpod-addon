@@ -1,6 +1,6 @@
 {
   "name": "tdk-gitpod-addon",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "tdk-gitpod-addon",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

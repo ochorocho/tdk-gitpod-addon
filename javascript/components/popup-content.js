@@ -34,15 +34,27 @@ class PopupContent extends LitElement {
   }
 
   render() {
+    this.tab.then((tabs) => {
+      console.log(tabs[0].url)
+      this.url = tabs[0].url
+      this.isAvailable = tabs[0].url.toString().includes('review.typo3.org')
+    })
+
     this.patch = this.gerrit.parse(this.url)
-    if (this.patch) {
+    const patchSelector = this.patch
+      ? html`<gerrit-patch .form="${this.form}"
+                           .patch="${this.patch.id}"
+                           .revision="${this.patch.revision}">
+      </gerrit-patch>`
+      : ''
+
+    if (this.isAvailable) {
       return html`
         <style-sheet/>
 
         <form method="post" id="GitPodForm">
           <tdk-username .form="${this.form}" label="Username"></tdk-username>
-          <gerrit-patch .form="${this.form}" .patch="${this.patch.id}"
-                        .revision="${this.patch.revision}"></gerrit-patch>
+          ${patchSelector}
           <drop-down .form="${this.form}" label="Branch" .items="${this.branches}"></drop-down>
           <drop-down .form="${this.form}" label="PHP Version" .items="${this.php}"></drop-down>
           <tdk-button></tdk-button>
@@ -55,9 +67,12 @@ class PopupContent extends LitElement {
   }
 
   handleSubmit() {
-    this.form.TDK_PATCH_ID = this.patch.id
-    const enves = Object.keys(this.form).map((key) => [key, encodeURIComponent(this.form[key])].join('=')).join(',')
-    const gitPod = 'https://gitpod.io/#' + enves + '/https://github.com/ochorocho/tdk/'
+    if (this.patch) {
+      this.form.TDK_PATCH_ID = this.patch.id
+    }
+
+    const env = Object.keys(this.form).map((key) => [key, encodeURIComponent(this.form[key])].join('=')).join(',')
+    const gitPod = 'https://gitpod.io/#' + env + '/https://github.com/ochorocho/tdk/'
     window.open(gitPod)
   }
 }

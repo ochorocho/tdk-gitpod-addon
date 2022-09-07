@@ -23,9 +23,7 @@ set up a composer based TYPO3 development environment in GitPod.
 
 ## ToDo
 
-* Optimize speed. Currently, it takes 3 - 4 minutes till the GitPod is ready.
 * Better feedback in case a patch was not applied correctly
-* Publish the addon to the different browser markets
 * Integrate GitHub workflow
 
 ## Development
@@ -44,3 +42,10 @@ Folders
 * `javascript` - Javascript classes
 * `scss` - Scss sources
 * `web-ext-artifacts` - final build location of the addon
+
+### Build to publish
+
+```bash
+yarn build:v2 # Firefox requires manifest v2
+yarn build:v3 # Chrome/Edge require manifest v3
+```
