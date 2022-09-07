@@ -22,10 +22,14 @@ jobs:
       - name: Install packages
         run: yarn install
 
-      - name: Lint
-        run: yarn lint
+      - name: Lint v2 and v3
+        run: |
+            node_modules/.bin/webpack --mode=production && mv dist/manifest-v2.json dist/manifest.json && rm dist/manifest-v3.json
+            yarn lint
+            node_modules/.bin/webpack --mode=production && mv dist/manifest-v3.json dist/manifest.json && rm dist/manifest-v2.json
+            yarn lint
 
-      - name: Build v2/v3 manifest addon
+      - name: Build v2 and v3 manifest addon
         run: |
             yarn build:v2
             yarn build:v3
