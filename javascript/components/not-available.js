@@ -16,8 +16,9 @@ class NotAvailable extends LitElement {
     return html`
       <style-sheet/>
 
-      <p class="not-available">To use this plugin go to<br>
-        <a href="${this.url}">TYPO3 Gerrit</a><br>
+      <p class="not-available">
+        To use this plugin go to<br>
+        <a href="${this.url}" target="_blank">TYPO3 Gerrit</a><br>
         and select a patch
       </p>
     `
