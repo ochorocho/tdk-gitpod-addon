@@ -2,8 +2,6 @@ name: tests
 
 on:
   push:
-    tags:
-      - "v*.*.*"
   pull_request:
   schedule:
     - cron: "0 4 * * *"
@@ -36,7 +34,7 @@ jobs:
 
       - name: Upload release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/v')
         with:
             files: |
                 web-ext-artifacts/typo3_tdk_gitpod-v2.zip
