@@ -38,10 +38,24 @@ jobs:
           files: |
             web-ext-artifacts/typo3_tdk_gitpod-v2.zip
             web-ext-artifacts/typo3_tdk_gitpod-v3.zip
+
   darwin:
     name: Build for Safari
     runs-on: macos-12
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.4.1
+
+      - name: Install packages
+        run: yarn install
+
+      - name: Build v3 manifest addon
+        run: |
+          yarn build:v3
+
       - name: Setup Xcode version
         uses: maxim-lobanov/setup-xcode@v1.4.1
         with:
