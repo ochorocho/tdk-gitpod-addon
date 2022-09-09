@@ -66,12 +66,13 @@ jobs:
           xcrun safari-web-extension-converter dist
           cd "TYPO3 TDK GitPod Integration"
           xcodebuild -project "TYPO3 TDK GitPod Integration.xcodeproj" -target "TYPO3 TDK GitPod Integration Extension (macOS)" -configuration Debug
-          zip -r TYPO3-TDK-GitPod-Safari.zip /Users/runner/work/tdk-gitpod-addon/tdk-gitpod-addon/TYPO3\ TDK\ GitPod\ Integration/build/Debug
+          zip -r TYPO3-TDK-GitPod-Safari.zip /Users/runner/work/tdk-gitpod-addon/tdk-gitpod-addon/
           ls -la
-
       - name: Upload safari release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: |
-            TYPO3\ TDK\ GitPod\ Integration/TYPO3-TDK-GitPod-Safari.zip
+            "TYPO3\ TDK\ GitPod\ Integration/TYPO3-TDK-GitPod-Safari.zip"
+
+# TYPO3\ TDK\ GitPod\ Integration/build/Debug
