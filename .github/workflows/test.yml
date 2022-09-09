@@ -64,5 +64,5 @@ jobs:
       - name: Build Safari
         run: |
           xcrun safari-web-extension-converter dist
-          cd /Users/runner/work/tdk-gitpod-addon/tdk-gitpod-addon
+          cd TYPO3 TDK GitPod Integration
           xcodebuild -project "TYPO3 TDK GitPod Integration.xcodeproj" -target "TYPO3 TDK GitPod Integration Extension (macOS)" -configuration Debug
