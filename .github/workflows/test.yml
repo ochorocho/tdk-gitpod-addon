@@ -67,3 +67,14 @@ jobs:
           cd "TYPO3 TDK GitPod Integration"
           xcodebuild -project "TYPO3 TDK GitPod Integration.xcodeproj" -target "TYPO3 TDK GitPod Integration Extension (macOS)" -configuration Debug
           ls -la ~/Library/Developer/Xcode/DerivedData/TYPO3_TDK_GitPod_Integration-*/
+          zip -r TYPO3-TDK-GitPod-Safari.zip ~/Library/Developer/Xcode/DerivedData/TYPO3_TDK_GitPod_Integration-*/Build/Products/Debug
+          ls -la
+
+      - name: Upload safari release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          files: |
+            TYPO3-TDK-GitPod-Safari.zip
+
+# ~/Library/Developer/Xcode/DerivedData/TYPO3_TDK_GitPod_Integration-*/Build/Products/Debug/TYPO3\ TDK\ GitPod\ Integration.app
