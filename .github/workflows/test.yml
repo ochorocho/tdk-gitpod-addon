@@ -74,4 +74,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: |
-            TYPO3-TDK-GitPod-Safari.zip
+            TYPO3\ TDK\ GitPod\ Integration/TYPO3-TDK-GitPod-Safari.zip
