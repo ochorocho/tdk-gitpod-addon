@@ -6,8 +6,8 @@ on:
   schedule:
     - cron: "0 4 * * *"
 jobs:
-  testsuite:
-    name: Tests
+  prepare:
+    name: Prepare to clone a new version
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -18,15 +18,22 @@ jobs:
 
       - name: Install packages
         run: yarn install
-
+        # Do not validate v3 ... well not working atm, requires some more work. Doh!
+        # node_modules/.bin/webpack --mode=production && mv dist/manifest-v3.json dist/manifest.json && rm dist/manifest-v2.json
+        # yarn lint
       - name: Lint v2 and v3
         run: |
           node_modules/.bin/webpack --mode=production && mv dist/manifest-v2.json dist/manifest.json && rm dist/manifest-v3.json
           yarn lint
 
-        # Do not validate v3 ... well not working atm, requires some more work. Doh!
-        # node_modules/.bin/webpack --mode=production && mv dist/manifest-v3.json dist/manifest.json && rm dist/manifest-v2.json
-        # yarn lint
+  webextension:
+    name: Build Web Extension (Chrome, Firefox, Edge)
+    needs: [
+      prepare
+    ]
+    if: ${{ always() && !cancelled() && needs.build.result == 'success' }}
+    runs-on: ubuntu-20.04
+    steps:
       - name: Build v2 and v3 manifest addon
         run: |
           yarn build:v2
@@ -46,18 +53,17 @@ jobs:
   darwin:
     name: Build for Safari
     runs-on: macos-12
+    needs: [
+      prepare
+    ]
+    if: ${{ always() && !cancelled() && needs.build.result == 'success' }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.4.1
 
-      - name: Install packages
-        run: yarn install
-
       - name: Build v3 manifest addon
         run: |
+          yarn install
           yarn build:v3
 
       - name: Setup Xcode version
@@ -71,9 +77,21 @@ jobs:
           mv "TYPO3 TDK GitPod Integration/DerivedData/Build/Products/Debug/TYPO3 TDK GitPod Integration.app" "TYPO3 TDK GitPod Integration.app"
           zip -r TYPO3-TDK-GitPod-${{ github.ref_name }}.zip "TYPO3 TDK GitPod Integration.app"
           ls -la
+  # Upload generated extensions only if job "webextension"/"darwin"
+  # were successful and is running on a tag (e.g. v1.0.0)
+  upload:
+    name: Upload assets
+    runs-on: ubuntu-20.04
+    needs: [
+      webextension,
+      darwin
+    ]
+    if: ${{ always() && !cancelled() && needs.build.result == 'success' }}
+    steps:
       - name: Upload safari release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: |
             TYPO3-TDK-GitPod-Safari-${{ github.ref_name }}.zip
+
