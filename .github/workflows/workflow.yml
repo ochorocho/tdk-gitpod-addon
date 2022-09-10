@@ -45,17 +45,14 @@ jobs:
         run: |
           yarn build:v2
           yarn build:v3
-          mv web-ext-artifacts/typo3-tdk-gitpod-v2.zip TYPO3-TDK-GitPod-Manifest-v2-${{ github.ref_name }}.zip
-          mv web-ext-artifacts/typo3-tdk-gitpod-v3.zip TYPO3-TDK-GitPod-Manifest-v3-${{ github.ref_name }}.zip
+          mv web-ext-artifacts/typo3-tdk-gitpod-v2.zip "TYPO3-TDK-GitPod-Manifest-v2-${{ github.ref_name }}.zip"
+          mv web-ext-artifacts/typo3-tdk-gitpod-v3.zip "TYPO3-TDK-GitPod-Manifest-v3-${{ github.ref_name }}.zip"
           ls -la
 
-      - name: Upload release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/v')
+      - uses: actions/upload-artifact@v3
         with:
-          files: |
-            TYPO3-TDK-GitPod-Manifest-v2-${{ github.ref_name }}.zip
-            TYPO3-TDK-GitPod-Manifest-v3-${{ github.ref_name }}.zip
+          name: webextension
+          path: TYPO3-TDK-GitPod-*
 
   darwin:
     name: Build for Safari
@@ -84,12 +81,36 @@ jobs:
         run: |
           yarn build:safari
           mv "TYPO3 TDK GitPod Integration/DerivedData/Build/Products/Debug/TYPO3 TDK GitPod Integration.app" "TYPO3 TDK GitPod Integration.app"
-          zip -r TYPO3-TDK-GitPod-${{ github.ref_name }}.zip "TYPO3 TDK GitPod Integration.app"
+          zip -r "TYPO3-TDK-GitPod-${{ github.ref_name }}.zip" "TYPO3 TDK GitPod Integration.app"
           ls -la
 
-      - name: Upload safari release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/v')
+      - uses: actions/upload-artifact@v3
         with:
-          files: |
-            TYPO3-TDK-GitPod-Safari-${{ github.ref_name }}.zip
+          name: extension-safari
+          path: TYPO3-TDK-GitPod-*
+
+  upload:
+    name: Upload release files
+    runs-on: ubuntu-20.04
+    needs: [
+      webextension,
+      darwin
+    ]
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: webextension
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: extension-safari
+
+    - name: Upload release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/v')
+      with:
+        files: |
+          TYPO3-TDK-GitPod-Manifest-v2-${{ github.ref_name }}.zip
+          TYPO3-TDK-GitPod-Manifest-v3-${{ github.ref_name }}.zip
