@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const SassLintPlugin = require('sass-lint-webpack')
 const WebpackShellPluginNext = require('webpack-shell-plugin-next')
-const Dotenv = require('dotenv-webpack');
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   mode: 'production',

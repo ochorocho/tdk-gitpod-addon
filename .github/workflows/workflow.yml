@@ -6,7 +6,7 @@ on:
   schedule:
     - cron: "0 4 * * *"
 jobs:
-  prepare:
+  codequality:
     name: Checkout and install packages
     runs-on: ubuntu-20.04
     steps:
@@ -23,7 +23,7 @@ jobs:
         # yarn lint
       - name: Lint v2 and v3
         run: |
-          node_modules/.bin/webpack --mode=production && mv dist/manifest-v2.json dist/manifest.json && rm dist/manifest-v3.json
+          node_modules/.bin/webpack --mode=production && mv dist/manifest-v2.json dist/manifest.json
           yarn lint
 
   webextension:
@@ -33,6 +33,15 @@ jobs:
     ]
     runs-on: ubuntu-20.04
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.4.1
+
+      - name: Install packages
+        run: yarn install
+
       - name: Build v2 and v3 manifest addon
         run: |
           yarn build:v2
