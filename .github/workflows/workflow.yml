@@ -33,6 +33,7 @@ jobs:
           yarn build:v3
           mv web-ext-artifacts/typo3_tdk_gitpod-v2.zip typo3_tdk_gitpod-manifest-v2-${{ github.event.release.tag_name }}.zip
           mv web-ext-artifacts/typo3_tdk_gitpod-v3.zip typo3_tdk_gitpod-manifest-v3-${{ github.event.release.tag_name }}.zip
+          ls -la
 
       - name: Upload release
         uses: softprops/action-gh-release@v1
@@ -71,6 +72,7 @@ jobs:
           xcodebuild -project "TYPO3 TDK GitPod Integration.xcodeproj" -configuration Debug -derivedDataPath ./DerivedData -scheme "TYPO3 TDK GitPod Integration (macOS)"
           mv "DerivedData/Build/Products/TYPO3 TDK GitPod Integration.app" "TYPO3 TDK GitPod Integration.app"
           zip -r ../TYPO3-TDK-GitPod-${{ github.event.release.tag_name }}.zip "TYPO3 TDK GitPod Integration.app"
+          ls -la
       - name: Upload safari release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/v')
