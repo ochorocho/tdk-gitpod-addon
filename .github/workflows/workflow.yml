@@ -31,7 +31,6 @@ jobs:
     needs: [
       prepare
     ]
-    if: ${{ always() && !cancelled() && needs.build.result == 'success' }}
     runs-on: ubuntu-20.04
     steps:
       - name: Build v2 and v3 manifest addon
@@ -56,7 +55,6 @@ jobs:
     needs: [
       prepare
     ]
-    if: ${{ always() && !cancelled() && needs.build.result == 'success' }}
     steps:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.4.1
@@ -86,7 +84,6 @@ jobs:
       webextension,
       darwin
     ]
-    if: ${{ always() && !cancelled() && needs.build.result == 'success' }}
     steps:
       - name: Upload safari release
         uses: softprops/action-gh-release@v1
