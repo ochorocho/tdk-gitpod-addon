@@ -5,6 +5,7 @@ on:
   pull_request:
   schedule:
     - cron: "0 4 * * *"
+
 jobs:
   codequality:
     name: Checkout and install packages
@@ -18,9 +19,7 @@ jobs:
 
       - name: Install packages
         run: yarn install
-        # Do not validate v3 ... well not working atm, requires some more work. Doh!
-        # node_modules/.bin/webpack --mode=production && mv dist/manifest-v3.json dist/manifest.json && rm dist/manifest-v2.json
-        # yarn lint
+
       - name: Lint v2 and v3
         run: |
           node_modules/.bin/webpack --mode=production && mv dist/manifest-v2.json dist/manifest.json
@@ -29,7 +28,7 @@ jobs:
   webextension:
     name: Build Web Extension (Chrome, Firefox, Edge)
     needs: [
-      prepare
+      codequality
     ]
     runs-on: ubuntu-20.04
     steps:
@@ -62,7 +61,7 @@ jobs:
     name: Build for Safari
     runs-on: macos-12
     needs: [
-      prepare
+      codequality
     ]
     steps:
       - name: Setup Node.js environment
@@ -100,4 +99,3 @@ jobs:
         with:
           files: |
             TYPO3-TDK-GitPod-Safari-${{ github.ref_name }}.zip
-
