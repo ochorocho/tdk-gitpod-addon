@@ -31,8 +31,8 @@ jobs:
         run: |
           yarn build:v2
           yarn build:v3
-          mv web-ext-artifacts/typo3_tdk_gitpod-v2.zip typo3_tdk_gitpod-manifest-v2-${{ github.event.release.tag_name }}.zip
-          mv web-ext-artifacts/typo3_tdk_gitpod-v3.zip typo3_tdk_gitpod-manifest-v3-${{ github.event.release.tag_name }}.zip
+          mv web-ext-artifacts/TYPO3-TDK-GitPod-v2.zip TYPO3-TDK-GitPod-v2-${{ github.ref_name }}.zip
+          mv web-ext-artifacts/TYPO3-TDK-GitPod-v3.zip TYPO3-TDK-GitPod-v3-${{ github.ref_name }}.zip
           ls -la
 
       - name: Upload release
@@ -40,8 +40,8 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: |
-            typo3_tdk_gitpod-manifest-v2-${{ github.event.release.tag_name }}.zip
-            typo3_tdk_gitpod-manifest-v3-${{ github.event.release.tag_name }}.zip
+            TYPO3-TDK-GitPod-Manifest-v2-${{ github.ref_name }}.zip
+            TYPO3-TDK-GitPod-Manifest-v3-${{ github.ref_name }}.zip
 
   darwin:
     name: Build for Safari
@@ -69,11 +69,11 @@ jobs:
         run: |
           yarn build:safari
           mv "TYPO3 TDK GitPod Integration/DerivedData/Build/Products/Debug/TYPO3 TDK GitPod Integration.app" "TYPO3 TDK GitPod Integration.app"
-          zip -r TYPO3-TDK-GitPod-${{ github.event.release.tag_name }}.zip "TYPO3 TDK GitPod Integration.app"
+          zip -r TYPO3-TDK-GitPod-${{ github.ref_name }}.zip "TYPO3 TDK GitPod Integration.app"
           ls -la
       - name: Upload safari release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: |
-            TYPO3-TDK-GitPod-Safari-${{ github.event.release.tag_name }}.zip
+            TYPO3-TDK-GitPod-Safari-${{ github.ref_name }}.zip
