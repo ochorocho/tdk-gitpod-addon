@@ -7,10 +7,19 @@ on:
     - cron: "0 4 * * *"
 
 jobs:
-  codequality:
+  prepare:
     name: Checkout and install packages
     runs-on: ubuntu-20.04
+    outputs:
+      ref: ${{ steps.refs.outputs.test }}
     steps:
+      - uses: mad9000/actions-find-and-replace-string@2
+        id: refs
+        with:
+          source: ${{ github.ref_name }}
+          find: '/'
+          replace: '-'
+
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -28,7 +37,7 @@ jobs:
   webextension:
     name: Build Web Extension (Chrome, Firefox, Edge)
     needs: [
-      codequality
+      prepare
     ]
     runs-on: ubuntu-20.04
     steps:
@@ -47,8 +56,8 @@ jobs:
           yarn build:v3
           ls -la
           ls -la web-ext-artifacts/
-          mv web-ext-artifacts/typo3-tdk-gitpod-v2.zip "TYPO3-TDK-GitPod-Manifest-v2-${{ github.ref_name }}.zip"
-          mv web-ext-artifacts/typo3-tdk-gitpod-v3.zip "TYPO3-TDK-GitPod-Manifest-v3-${{ github.ref_name }}.zip"
+          mv web-ext-artifacts/typo3-tdk-gitpod-v2.zip "TYPO3-TDK-GitPod-Manifest-v2-${{needs.prepare.outputs.ref}}.zip"
+          mv web-ext-artifacts/typo3-tdk-gitpod-v3.zip "TYPO3-TDK-GitPod-Manifest-v3-${{needs.prepare.outputs.ref}}.zip"
           ls -la
 
       - uses: actions/upload-artifact@v3
@@ -60,7 +69,7 @@ jobs:
     name: Build for Safari
     runs-on: macos-12
     needs: [
-      codequality
+      prepare
     ]
     steps:
       - name: Checkout
@@ -83,7 +92,7 @@ jobs:
         run: |
           yarn build:safari
           mv "TYPO3 TDK GitPod Integration/DerivedData/Build/Products/Debug/TYPO3 TDK GitPod Integration.app" "TYPO3 TDK GitPod Integration.app"
-          zip -r TYPO3-TDK-GitPod-${{ github.ref_name }}.zip "TYPO3 TDK GitPod Integration.app"
+          zip -r TYPO3-TDK-GitPod-${{needs.prepare.outputs.ref}}.zip "TYPO3 TDK GitPod Integration.app"
           ls -la
 
       - uses: actions/upload-artifact@v3
