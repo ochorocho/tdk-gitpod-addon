@@ -45,8 +45,8 @@ jobs:
         run: |
           yarn build:v2
           yarn build:v3
-          mv web-ext-artifacts/TYPO3-TDK-GitPod-v2.zip TYPO3-TDK-GitPod-v2-${{ github.ref_name }}.zip
-          mv web-ext-artifacts/TYPO3-TDK-GitPod-v3.zip TYPO3-TDK-GitPod-v3-${{ github.ref_name }}.zip
+          mv web-ext-artifacts/typo3-tdk-gitpod-v2.zip TYPO3-TDK-GitPod-Manifest-v2-${{ github.ref_name }}.zip
+          mv web-ext-artifacts/typo3-tdk-gitpod-v3.zip TYPO3-TDK-GitPod-Manifest-v3-${{ github.ref_name }}.zip
           ls -la
 
       - name: Upload release
@@ -86,16 +86,7 @@ jobs:
           mv "TYPO3 TDK GitPod Integration/DerivedData/Build/Products/Debug/TYPO3 TDK GitPod Integration.app" "TYPO3 TDK GitPod Integration.app"
           zip -r TYPO3-TDK-GitPod-${{ github.ref_name }}.zip "TYPO3 TDK GitPod Integration.app"
           ls -la
-  # Upload generated extensions only if job "webextension"/"darwin"
-  # were successful and is running on a tag (e.g. v1.0.0)
-  upload:
-    name: Upload assets
-    runs-on: ubuntu-20.04
-    needs: [
-      webextension,
-      darwin
-    ]
-    steps:
+
       - name: Upload safari release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/v')
