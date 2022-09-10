@@ -7,7 +7,7 @@ on:
     - cron: "0 4 * * *"
 jobs:
   prepare:
-    name: Prepare to clone a new version
+    name: Checkout and install packages
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
