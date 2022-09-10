@@ -5,3 +5,4 @@
 .env
 /.yarn/cache
 /.yarn/install-state.gz
+/TYPO3 TDK GitPod Integration
