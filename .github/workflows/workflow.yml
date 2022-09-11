@@ -79,6 +79,9 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.4.1
 
+      - name: Install packages
+        run: yarn install
+
       - name: Setup Xcode version
         uses: maxim-lobanov/setup-xcode@v1.4.1
         with:
