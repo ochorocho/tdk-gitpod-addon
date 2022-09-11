@@ -8103,6 +8103,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"png2icons@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "png2icons@npm:2.0.1"
+  bin:
+    png2icons: ./png2icons-cli.js
+  checksum: 32e1fc25f8d5abf0c9716c57db935fa53210365d0616b755b481572fbf4e9240b4388a6304117c950546551fdf3b3c6ebc286bf33d4e0e61a6d749c98a611607
+  languageName: node
+  linkType: hard
+
 "posix-character-classes@npm:^0.1.0":
   version: 0.1.1
   resolution: "posix-character-classes@npm:0.1.1"
@@ -10284,6 +10293,7 @@ __metadata:
     extract-loader: ^5.1.0
     file-loader: ^6.0.0
     lit: ^2.0.2
+    png2icons: ^2.0.1
     postcss: ^8.1.10
     postcss-inline-svg: ^5.0.0
     postcss-loader: ^4.1.0

@@ -55,8 +55,6 @@ jobs:
         run: |
           yarn build:v2
           yarn build:v3
-          ls -la
-          ls -la web-ext-artifacts/
           mv web-ext-artifacts/typo3-tdk-gitpod-v2.zip "TYPO3-TDK-GitPod-Manifest-v2-${{needs.prepare.outputs.ref}}.zip"
           mv web-ext-artifacts/typo3-tdk-gitpod-v3.zip "TYPO3-TDK-GitPod-Manifest-v3-${{needs.prepare.outputs.ref}}.zip"
           ls -la
