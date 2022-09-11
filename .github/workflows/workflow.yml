@@ -32,6 +32,7 @@ jobs:
 
       - name: Lint v2 and v3
         run: |
+          echo "The replaced value is ${{ steps.clean_ref.outputs.value }}"
           node_modules/.bin/webpack --mode=production && mv dist/manifest-v2.json dist/manifest.json
           yarn lint
 
