@@ -11,7 +11,7 @@ jobs:
     name: Checkout and install packages
     runs-on: ubuntu-20.04
     outputs:
-      ref: ${{ steps.clean_ref.outputs.test }}
+      ref: ${{ steps.clean_ref.outputs.value }}
     steps:
       - name: Run find-and-replace to remove slashes
         uses: mad9000/actions-find-and-replace-string@1
