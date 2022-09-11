@@ -1,0 +1,15 @@
+{
+  "title": "TYPO3 GitPod",
+  "icon": "dist-safari/icons/typo3-orange-48.icns",
+  "background": "dist-safari/icons/typo3-background-420.png",
+  "window": {
+    "size": {
+      "width": 436,
+      "height": 270
+    }
+  },
+  "contents": [
+    { "x": 100, "y": 120, "type": "file", "path": "dist-safari/TYPO3 TDK GitPod Integration/DerivedData/Build/Products/Debug/TYPO3 TDK GitPod Integration.app" },
+    { "x": 340, "y": 120, "type": "link", "path": "/Applications" }
+  ]
+}

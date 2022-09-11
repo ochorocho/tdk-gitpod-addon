@@ -1,7 +1,9 @@
 /web-ext-artifacts/
 /dist
+/dist-safari
 /node_modules
 /.idea
 .env
 /.yarn/cache
 /.yarn/install-state.gz
+/TYPO3-TDK-GitPod.dmg
