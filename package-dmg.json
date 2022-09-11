@@ -1,0 +1,9 @@
+{
+  "title": "TYPO3 GitPod",
+  "icon": "gitpod-icon.icns",
+  "background": "dist/icons/typo3-dark-512.png",
+  "contents": [
+    { "x": 200, "y": 100, "type": "link", "path": "/Applications" },
+    { "x": 200, "y": 200, "type": "file", "path": "dist-safari/TYPO3 TDK GitPod Integration/DerivedData/Build/Products/Debug/TYPO3 TDK GitPod Integration.app" }
+  ]
+}
