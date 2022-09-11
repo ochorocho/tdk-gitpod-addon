@@ -1,5 +1,10 @@
 @import 'general';
 
+// Fix dark mode in safari
+:root {
+  color-scheme: light dark;
+}
+
 html { box-sizing: border-box; }
 
 body {
