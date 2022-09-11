@@ -124,11 +124,9 @@ jobs:
         ls -la
 
 
-#    - name: Upload release
-#      uses: softprops/action-gh-release@v1
-#      if: startsWith(github.ref, 'refs/tags/v')
-#      with:
-#        files: |
-#          TYPO3-TDK-GitPod-Manifest-v2-${{needs.prepare.outputs.ref}}.zip
-#          TYPO3-TDK-GitPod-Manifest-v3-${{needs.prepare.outputs.ref}}.zip
-#          TYPO3-TDK-GitPod-Safari-${{needs.prepare.outputs.ref}}.zip
+    - name: Upload release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/v')
+      with:
+        files: |
+          TYPO3-TDK-GitPod-*
