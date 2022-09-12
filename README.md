@@ -21,11 +21,6 @@ settings (patch id, revision, php version) passed to GitPod which then
 uses [ochorocho/tdk](https://github.com/ochorocho/tdk) and ddev to
 set up a composer based TYPO3 development environment in GitPod.
 
-## ToDo
-
-* Better feedback in case a patch was not applied correctly
-* Integrate GitHub workflow
-
 ## Development
 
 ```bash
@@ -48,4 +43,28 @@ Folders
 ```bash
 yarn build:v2 # Firefox requires manifest v2
 yarn build:v3 # Chrome/Edge require manifest v3
+yarn build:safari # Requires MacOS and xcode!
 ```
+
+### Installation
+
+#### Mozilla Firefox:
+
+* https://addons.mozilla.org/de/firefox/addon/typo3-tdk-gitpod-integration/
+
+#### Microsoft Edge:
+
+* https://microsoftedge.microsoft.com/addons/detail/typo3-tdk-gitpod-integrat/ffphfaaoaalmjhndekiopmkacelbfleh
+
+#### Google Chrome:
+
+* https://chrome.google.com/webstore/detail/typo3-tdk-gitpod-integrat/kbneemgnlgbgifpnhikifmjcjbblpnmd
+
+#### Apple Safari:
+
+* https://github.com/ochorocho/tdk-gitpod-addon/releases/tag/v1.1.0
+
+Download the `TYPO3-TDK-GitPod-v1.1.0.dmg` file and open it. Move the App file to the `Applications` folder.
+Go to the `Applications` folder and double-click the `TYPO3 TDK GitPod Integration.app` -> "Quit and Open Safari Extensions Preferences..."
+To finally enable the Extension in Safari go to the top bar menu and open `Develop` and click on `Allow unsigned Extensions`.
+See [Safari docs](https://developer.apple.com/documentation/safariservices/safari_app_extensions/building_a_safari_app_extension#2957925) for details
